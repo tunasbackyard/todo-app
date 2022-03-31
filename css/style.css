@@ -79,6 +79,10 @@ body {
   color: rgb(226, 94, 94);
 }
 
+.link--active {
+  font-weight: 600;
+}
+
 .todo-container {
   margin: 1em 0;
   width: 100%;
@@ -103,4 +107,9 @@ body {
 .checkbox {
   width: 20px;
   height: 20px;
+}
+
+.menu-icon {
+  cursor: pointer;
+  position: relative;
 }
