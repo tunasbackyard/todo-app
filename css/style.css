@@ -54,6 +54,42 @@ body {
   color: var(--text-color);
 }
 
+.user-input {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  width: 100%;
+  margin: 1em 0;
+  background: rgb(227, 245, 254);
+}
+
+.user-input input {
+  outline: none;
+  border: none;
+  background: none;
+  width: 70%;
+  padding: 1em 1em;
+  font-size: 0.9rem;
+}
+
+.user-input input::placeholder {
+  font-size: 0.85em;
+}
+
+.user-input i {
+  display: flex;
+  height: 100%;
+  padding: 0 0.8em;
+  border-left: 2px solid var(--text-color);
+  transition: all 0.2s ease;
+}
+
+.user-input i:hover {
+  cursor: pointer;
+  border-left: none;
+  transform: rotate(90deg);
+}
+
 .sections ul {
   display: flex;
   list-style: none;
@@ -62,7 +98,6 @@ body {
 
 .sections ul li {
   margin: 0 0.6em;
-  padding: 0.8em 0;
 }
 
 .link {
@@ -118,7 +153,7 @@ body {
   list-style: none;
 }
 
-.todo-list .todo-item {
+.todo-list li {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -128,14 +163,17 @@ body {
   border-radius: 2px;
 }
 
-.checkbox {
+.todo-list span {
+  text-transform: lowercase;
+}
+
+.todo-list input {
   width: 20px;
   height: 20px;
 }
 
-.menu-icon {
+.todo-list i {
   cursor: pointer;
-  position: relative;
 }
 
 .hidden {
