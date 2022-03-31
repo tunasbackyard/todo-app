@@ -4,6 +4,17 @@
   box-sizing: inherit;
 }
 
+:root {
+  --header-color: rgb(37, 37, 37);
+  --text-color: rgb(86, 86, 86);
+  --background-1: rgb(179, 213, 227);
+  --background-2: rgb(220, 232, 244);
+}
+
+body {
+  background: var(--background-2);
+}
+
 .container {
   position: absolute;
   top: 50%;
@@ -14,18 +25,28 @@
   justify-content: center;
   align-items: center;
   width: 310px;
-  border: 2px solid black;
+  background: var(--background-1);
   font-family: "Lato", sans-serif;
+  border-radius: 15px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .title {
+  margin-top: 2em;
   padding: 0.5em 0.9em;
   font-family: "Staatliches", cursive;
-  border-bottom: 2px solid gray;
+  border-bottom: 2px solid var(--text-color);
+}
+
+.title h1 {
+  color: var(--header-color);
+  margin-bottom: 0.4em;
 }
 
 .title p {
   font-size: 0.9rem;
+  letter-spacing: 1.3px;
+  color: var(--text-color);
 }
 
 .sections ul {
@@ -46,4 +67,7 @@
 
 .sections ul li a i {
   margin: 0 0.2em;
+}
+
+.todo-container {
 }
