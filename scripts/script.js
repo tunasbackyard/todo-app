@@ -15,9 +15,6 @@ let taskIndex = 0;
 DOM.getElements();
 
 DOM.inputIcon.addEventListener("click", function () {
-  if (checkClass(DOM.inputForm.parentElement, "failed")) {
-    removeClass(DOM.inputForm.parentElement, "failed");
-  }
   const taskInput = getUserInput(DOM.inputForm);
   if (checkUserInput(taskInput)) {
     addToList(todoList, getUserInput(DOM.inputForm));
@@ -28,6 +25,7 @@ DOM.inputIcon.addEventListener("click", function () {
   } else {
     DOM.inputForm.setAttribute("placeholder", "task cannot be empty");
     addClass(DOM.inputForm.parentElement, "failed");
+    removeFailedState();
   }
 });
 
@@ -73,4 +71,14 @@ function createTaskItem(parent) {
   item.appendChild(task);
   item.appendChild(menu);
   return parent.appendChild(item);
+}
+
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+async function removeFailedState() {
+  await sleep(700);
+  removeClass(DOM.inputForm.parentElement, "failed");
+  DOM.inputForm.setAttribute("placeholder", "max 20 character");
 }

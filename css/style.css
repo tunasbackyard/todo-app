@@ -61,10 +61,11 @@ body {
   width: 100%;
   margin: 1em 0;
   background: rgb(227, 245, 254);
+  border: 1px solid rgb(227, 245, 254);
 }
 
 .failed {
-  border: 2px solid var(--red);
+  border: 1px solid var(--red);
 }
 
 .user-input input {
