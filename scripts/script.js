@@ -10,15 +10,25 @@ const DOM = {
 };
 
 const todoList = [];
+let taskIndex = 0;
 
 DOM.getElements();
 
 DOM.inputIcon.addEventListener("click", function () {
-  addToList(todoList, getUserInput(DOM.inputForm));
-  removeClass(DOM.taskList, "hidden");
-  addClass(DOM.noItemAlert, "hidden");
-  createTaskItem(DOM.taskList).children[1].textContent =
-    todoList[todoList.length - 1];
+  if (checkClass(DOM.inputForm.parentElement, "failed")) {
+    removeClass(DOM.inputForm.parentElement, "failed");
+  }
+  const taskInput = getUserInput(DOM.inputForm);
+  if (checkUserInput(taskInput)) {
+    addToList(todoList, getUserInput(DOM.inputForm));
+    const taskItem = createTaskItem(DOM.taskList);
+    taskItem.children[1].textContent = todoList[taskItem.dataset.index];
+    removeClass(DOM.taskList, "hidden");
+    addClass(DOM.noItemAlert, "hidden");
+  } else {
+    DOM.inputForm.setAttribute("placeholder", "task cannot be empty");
+    addClass(DOM.inputForm.parentElement, "failed");
+  }
 });
 
 function addClass(element, className) {
@@ -35,6 +45,11 @@ function checkClass(element, className) {
   return element.classList.contains(className);
 }
 
+function checkUserInput(input) {
+  if (input) return true;
+  return false;
+}
+
 function getUserInput(form) {
   return form.value;
 }
@@ -47,6 +62,7 @@ function removeFromList(list, element, index) {}
 
 function createTaskItem(parent) {
   const item = document.createElement("li");
+  item.setAttribute("data-index", taskIndex++);
   const input = document.createElement("input");
   input.setAttribute("type", "checkbox");
   const task = document.createElement("span");
@@ -56,6 +72,5 @@ function createTaskItem(parent) {
   item.appendChild(input);
   item.appendChild(task);
   item.appendChild(menu);
-  // parent.appendChild(item);
   return parent.appendChild(item);
 }
