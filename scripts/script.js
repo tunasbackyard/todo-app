@@ -22,6 +22,7 @@ DOM.inputIcon.addEventListener("click", function () {
     taskItem.children[1].textContent = todoList[taskItem.dataset.index];
     removeClass(DOM.taskList, "hidden");
     addClass(DOM.noItemAlert, "hidden");
+    clearInputArea();
   } else {
     DOM.inputForm.setAttribute("placeholder", "task cannot be empty");
     addClass(DOM.inputForm.parentElement, "failed");
@@ -50,6 +51,10 @@ function checkUserInput(input) {
 
 function getUserInput(form) {
   return form.value;
+}
+
+function clearInputArea() {
+  DOM.inputForm.value = "";
 }
 
 function addToList(list, element) {

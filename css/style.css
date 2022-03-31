@@ -7,9 +7,9 @@
 :root {
   --header-color: rgb(37, 37, 37);
   --text-color: rgb(86, 86, 86);
-  --background-1: rgb(179, 213, 227);
-  --background-2: rgb(220, 232, 244);
-  --background-3: rgb(212, 226, 239);
+  --background-1: rgb(166, 199, 212);
+  --background-2: rgb(118, 129, 140);
+  --background-3: rgb(22, 42, 53);
   --red: rgb(226, 94, 94);
   --green: rgb(92, 230, 113);
   --gray: rgb(186, 186, 186);
@@ -62,10 +62,12 @@ body {
   margin: 1em 0;
   background: rgb(227, 245, 254);
   border: 1px solid rgb(227, 245, 254);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .failed {
   border: 1px solid var(--red);
+  box-shadow: var(--red) 0px 3px 8px;
 }
 
 .user-input input {
@@ -116,7 +118,7 @@ body {
 }
 
 .link--deleted {
-  color: rgb(226, 94, 94);
+  color: rgb(152, 30, 30);
 }
 
 .link--active {
@@ -164,8 +166,10 @@ body {
   align-items: center;
   padding: 1.2em 0.9em;
   margin: 0.1em 0;
+  color: white;
   background: var(--background-3);
   border-radius: 2px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .todo-list span {
@@ -183,4 +187,10 @@ body {
 
 .hidden {
   display: none;
+}
+
+@media (min-width: 1100px) {
+  .container {
+    width: 650px;
+  }
 }
