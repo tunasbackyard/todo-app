@@ -87,6 +87,30 @@ body {
   margin: 1em 0;
   width: 100%;
 }
+.alert {
+  color: white;
+  background: url(../Landscape\ 01.jpg);
+  background-position: center;
+  background-repeat: repeat-y;
+  background-size: cover;
+  border-radius: 10px;
+}
+
+.no-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.no-item h2 {
+  margin: 0.6em 0;
+  letter-spacing: 1.2px;
+}
+
+.no-item img {
+  width: 100%;
+}
 
 .todo-list {
   display: flex;
@@ -112,4 +136,8 @@ body {
 .menu-icon {
   cursor: pointer;
   position: relative;
+}
+
+.hidden {
+  display: none;
 }
