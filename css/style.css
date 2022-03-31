@@ -11,6 +11,8 @@
   --background-2: rgb(220, 232, 244);
   --background-3: rgb(212, 226, 239);
   --red: rgb(226, 94, 94);
+  --green: rgb(92, 230, 113);
+  --gray: rgb(186, 186, 186);
 }
 
 body {
@@ -96,4 +98,9 @@ body {
   margin: 0.1em 0;
   background: var(--background-3);
   border-radius: 2px;
+}
+
+.checkbox {
+  width: 20px;
+  height: 20px;
 }
