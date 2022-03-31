@@ -10,6 +10,7 @@
   --background-1: rgb(179, 213, 227);
   --background-2: rgb(220, 232, 244);
   --background-3: rgb(212, 226, 239);
+  --red: rgb(226, 94, 94);
 }
 
 body {
@@ -62,13 +63,18 @@ body {
   padding: 0.8em 0;
 }
 
-.sections ul li a {
+.link {
   color: black;
   text-decoration: none;
 }
 
 .sections ul li a i {
+  font-size: 0.9em;
   margin: 0 0.2em;
+}
+
+.link--deleted {
+  color: rgb(226, 94, 94);
 }
 
 .todo-container {
@@ -87,6 +93,7 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 1.2em 0.9em;
+  margin: 0.1em 0;
   background: var(--background-3);
   border-radius: 2px;
 }
