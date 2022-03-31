@@ -17,7 +17,8 @@ DOM.inputIcon.addEventListener("click", function () {
   addToList(todoList, getUserInput(DOM.inputForm));
   removeClass(DOM.taskList, "hidden");
   addClass(DOM.noItemAlert, "hidden");
-  createTaskItem(DOM.taskList);
+  createTaskItem(DOM.taskList).children[1].textContent =
+    todoList[todoList.length - 1];
 });
 
 function addClass(element, className) {
@@ -55,5 +56,6 @@ function createTaskItem(parent) {
   item.appendChild(input);
   item.appendChild(task);
   item.appendChild(menu);
-  parent.appendChild(item);
+  // parent.appendChild(item);
+  return parent.appendChild(item);
 }
