@@ -124,7 +124,7 @@ body {
 }
 .alert {
   color: white;
-  background: url(../Landscape\ 01.jpg);
+  background: url(../img/landscape.jpg);
   background-position: center;
   background-repeat: repeat-y;
   background-size: cover;
