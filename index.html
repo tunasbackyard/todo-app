@@ -32,17 +32,17 @@
       <div class="sections">
         <ul>
           <li>
-            <a href="" class="link link--active"
+            <a data-id="all" href="" class="link link--active"
               >All<i class="fa-solid fa-list"></i
             ></a>
           </li>
           <li>
-            <a href="" class="link"
+            <a data-id="completed" href="" class="link"
               >Completed <i class="fa-solid fa-check"></i
             ></a>
           </li>
           <li>
-            <a href="" class="link link--deleted"
+            <a data-id="deleted" href="" class="link link--deleted"
               >Deleted <i class="fa-solid fa-trash-can"></i
             ></a>
           </li>
@@ -52,13 +52,9 @@
         <div class="alert no-item">
           <h2>Nothing to do, for now..</h2>
         </div>
-        <ul class="todo-list hidden">
-          <!-- <li>
-            <input type="checkbox" />
-            <span>do homework</span>
-            <i class="fa-solid fa-ellipsis-vertical"></i>
-          </li> -->
-        </ul>
+        <ul class="todo-list hidden"></ul>
+        <ul class="completed-list hidden"></ul>
+        <ul class="deleted-list hidden"></ul>
       </div>
     </div>
   </body>

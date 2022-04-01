@@ -6,6 +6,10 @@ const DOM = {
     this.inputIcon = document.querySelector(".user-input i");
     this.noItemAlert = document.querySelector(".no-item");
     this.taskList = document.querySelector(".todo-list");
+    this.completedList = document.querySelector(".completed-list");
+    this.deletedList = document.querySelector(".deleted-list");
+    this.linkList = document.querySelector(".sections ul");
+    this.links = document.querySelectorAll(".link");
   },
 };
 
@@ -28,6 +32,15 @@ DOM.inputIcon.addEventListener("click", function () {
     addClass(DOM.inputForm.parentElement, "failed");
     removeFailedState();
   }
+});
+
+DOM.linkList.addEventListener("click", function (e) {
+  e.preventDefault();
+  if (!checkClass(e.target, "link")) return;
+  DOM.links.forEach((link) => {
+    removeClass(link, "link--active");
+  });
+  addClass(e.target, "link--active");
 });
 
 function addClass(element, className) {
