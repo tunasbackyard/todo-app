@@ -19,7 +19,7 @@ body {
   background: var(--background-2);
 }
 
-.container {
+.wrapper {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -125,10 +125,11 @@ body {
   font-weight: 600;
 }
 
-.todo-container {
+.container {
   margin: 1em 0;
   width: 100%;
 }
+
 .alert {
   color: white;
   background: url(../img/landscape.jpg);
@@ -190,7 +191,7 @@ body {
 }
 
 @media (min-width: 1100px) {
-  .container {
+  .wrapper {
     width: 650px;
   }
 }

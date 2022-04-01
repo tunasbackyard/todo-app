@@ -5,9 +5,8 @@ const DOM = {
     this.inputForm = document.querySelector(".user-input input");
     this.inputIcon = document.querySelector(".user-input i");
     this.noItemAlert = document.querySelector(".no-item");
+    this.containers = document.querySelectorAll(".container");
     this.taskList = document.querySelector(".todo-list");
-    this.completedList = document.querySelector(".completed-list");
-    this.deletedList = document.querySelector(".deleted-list");
     this.linkList = document.querySelector(".sections ul");
     this.links = document.querySelectorAll(".link");
   },
@@ -41,6 +40,13 @@ DOM.linkList.addEventListener("click", function (e) {
     removeClass(link, "link--active");
   });
   addClass(e.target, "link--active");
+  const id = e.target.dataset.id;
+  DOM.containers.forEach((container) => {
+    addClass(container, "hidden");
+    if (container.dataset.selector === id) {
+      removeClass(container, "hidden");
+    }
+  });
 });
 
 function addClass(element, className) {

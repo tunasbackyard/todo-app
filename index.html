@@ -20,7 +20,7 @@
     <script defer src="scripts/script.js"></script>
   </head>
   <body>
-    <div class="container">
+    <div class="wrapper">
       <div class="title">
         <h1>My TODO's 🥇</h1>
         <p>What would you like to do today?</p>
@@ -48,13 +48,24 @@
           </li>
         </ul>
       </div>
-      <div class="todo-container">
+      <div class="todo-container container" data-selector="all">
         <div class="alert no-item">
           <h2>Nothing to do, for now..</h2>
         </div>
         <ul class="todo-list hidden"></ul>
-        <ul class="completed-list hidden"></ul>
-        <ul class="deleted-list hidden"></ul>
+      </div>
+      <div
+        class="completed-container container hidden"
+        data-selector="completed"
+      >
+        <div class="alert no-item">
+          <h2>Do some task then come here..</h2>
+        </div>
+      </div>
+      <div class="deleted-container container hidden" data-selector="deleted">
+        <div class="alert no-item">
+          <h2>Trash is empty</h2>
+        </div>
       </div>
     </div>
   </body>
