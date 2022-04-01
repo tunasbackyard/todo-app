@@ -22,14 +22,12 @@ DOM.inputIcon.addEventListener("click", function () {
   if (checkUserInput(taskInput)) {
     addToList(todoList, getUserInput(DOM.inputForm));
     const taskItem = createTaskItem(DOM.taskList);
-    taskItem.children[1].textContent = todoList[taskItem.dataset.index];
+    setItemText(taskItem, todoList[taskItem.dataset.index]);
     removeClass(DOM.taskList, "hidden");
     addClass(DOM.noItemAlert, "hidden");
     clearInputArea();
   } else {
-    DOM.inputForm.setAttribute("placeholder", "task cannot be empty");
-    addClass(DOM.inputForm.parentElement, "failed");
-    removeFailedState();
+    handleInputFail(DOM.inputForm);
   }
 });
 
@@ -72,6 +70,14 @@ function getUserInput(form) {
   return form.value;
 }
 
+function setItemText(element, string) {
+  [...element.children].forEach((child) => {
+    if (child.tagName === "SPAN") {
+      child.textContent = string;
+    }
+  });
+}
+
 function clearInputArea() {
   DOM.inputForm.value = "";
 }
@@ -99,6 +105,12 @@ function createTaskItem(parent) {
 
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function handleInputFail(element) {
+  element.setAttribute("placeholder", "task cannot be empty");
+  addClass(element.parentElement, "failed");
+  removeFailedState();
 }
 
 async function removeFailedState() {
