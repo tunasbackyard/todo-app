@@ -21,52 +21,84 @@
   </head>
   <body>
     <div class="wrapper">
-      <div class="title">
-        <h1>My TODO's 🥇</h1>
-        <p>What would you like to do today?</p>
-      </div>
-      <div class="user-input">
-        <input type="text" maxlength="20" placeholder="max 20 character" />
-        <i class="fa-solid fa-arrow-right"></i>
-      </div>
-      <div class="sections">
-        <ul>
-          <li>
-            <a data-id="all" href="" class="link link--active"
-              >All<i class="fa-solid fa-list"></i
+      <section class="header">
+        <h1 class="header__title">My TODO's 🥇</h1>
+        <p class="header__subtitle">What would you like to do today?</p>
+      </section>
+
+      <section class="box">
+        <input
+          class="box__input"
+          type="text"
+          maxlength="20"
+          placeholder="max 20 character"
+        />
+        <i class="box__icon fa-solid fa-arrow-right"></i>
+      </section>
+
+      <section class="nav">
+        <ul class="nav__list">
+          <li class="nav__item">
+            <a class="nav__link link--active" data-id="all" href="">
+              All
+              <i class="nav__icon fa-solid fa-list"></i
             ></a>
           </li>
-          <li>
-            <a data-id="completed" href="" class="link"
-              >Completed <i class="fa-solid fa-check"></i
+          <li class="nav__item">
+            <a class="nav__link" data-id="completed" href="">
+              Completed
+              <i class="nav__icon fa-solid fa-check"></i
             ></a>
           </li>
-          <li>
-            <a data-id="deleted" href="" class="link link--deleted"
-              >Deleted <i class="fa-solid fa-trash-can"></i
+          <li class="nav__item">
+            <a class="nav__link link--deleted" data-id="deleted" href="">
+              Deleted
+              <i class="nav__icon fa-solid fa-trash-can"></i
             ></a>
           </li>
         </ul>
-      </div>
-      <div class="todo-container container" data-selector="all">
-        <div class="alert no-item">
-          <h2>Nothing to do, for now..</h2>
+      </section>
+
+      <section class="tabs">
+        <div class="container">
+          <div class="container__alert-box">
+            <h3 class="container__alert"></h3>
+          </div>
+          <ul class="container__list">
+            <li class="item">
+              <input class="item__checkbox" type="checkbox" />
+              <span class="item__task"></span>
+              <i class="iten__icon fa-solid fa-ellipsis-vertical"></i>
+            </li>
+          </ul>
         </div>
-        <ul class="todo-list hidden"></ul>
-      </div>
-      <div
-        class="completed-container container hidden"
-        data-selector="completed"
-      >
-        <div class="alert no-item">
-          <h2>Do some task then come here..</h2>
+
+        <div class="container">
+          <div class="container__alert-box">
+            <h3 class="container__alert"></h3>
+          </div>
+          <ul class="container__list">
+            <li class="item">
+              <input class="item__checkbox" type="checkbox" />
+              <span class="item__task"></span>
+              <i class="iten__icon fa-solid fa-ellipsis-vertical"></i>
+            </li>
+          </ul>
         </div>
-      </div>
-      <div class="deleted-container container hidden" data-selector="deleted">
-        <div class="alert no-item">
-          <h2>Trash is empty</h2>
+
+        <div class="container">
+          <div class="container__alert-box">
+            <h3 class="container__alert"></h3>
+          </div>
+          <ul class="container__list">
+            <li class="item">
+              <input class="item__checkbox" type="checkbox" />
+              <span class="item__task"></span>
+              <i class="iten__icon fa-solid fa-ellipsis-vertical"></i>
+            </li>
+          </ul>
         </div>
-      </div>
+      </section>
     </div>
   </body>
 </html>
