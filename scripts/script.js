@@ -1,22 +1,53 @@
-// "use strict";
+"use strict";
 
-// const DOM = {
-//   getElements() {
-//     this.inputForm = document.querySelector(".user-input input");
-//     this.inputIcon = document.querySelector(".user-input i");
-//     this.noItemAlert = document.querySelector(".no-item");
-//     this.containers = document.querySelectorAll(".container");
-//     this.taskList = document.querySelector(".todo-list");
-//     this.linkList = document.querySelector(".sections ul");
-//     this.links = document.querySelectorAll(".link");
-//   },
-// };
+const DOM = {
+  getElements() {
+    this.sectionBox = document.querySelector(".box");
+    this.inputBox = document.querySelector(".box__input");
+    this.addTodoButtonBox = document.querySelector(".box__icon");
+  },
+};
+
+DOM.getElements();
+
+DOM.addTodoButtonBox.addEventListener("click", function () {
+  todoCreationHandler(DOM.sectionBox, DOM.inputBox);
+});
+
+function todoCreationHandler(elementBox, inputForm) {
+  if (isInputEmpty(inputForm)) {
+    inputFailAnimationHandler(elementBox);
+  } else {
+    // add todo to the list
+  }
+}
+
+async function inputFailAnimationHandler(elementBox) {
+  addClass(elementBox, "box--fail");
+  await sleep(700);
+  removeClass(elementBox, "box--fail");
+}
+
+function isInputEmpty(inputForm) {
+  if (inputForm.value) return false;
+  return true;
+}
+
+function addClass(element, className) {
+  element.classList.add(className);
+}
+
+function removeClass(element, className) {
+  element.classList.remove(className);
+}
+
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
 
 // const todoList = [];
 // const completedList = [];
 // let taskIndex = 0;
-
-// DOM.getElements();
 
 // DOM.inputIcon.addEventListener("click", function () {
 //   const taskInput = getUserInput(DOM.inputForm);
