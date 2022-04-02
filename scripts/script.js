@@ -5,8 +5,16 @@ const DOM = {
     this.sectionBox = document.querySelector(".box");
     this.inputBox = document.querySelector(".box__input");
     this.addTodoButtonBox = document.querySelector(".box__icon");
+    this.listNav = document.querySelector(".nav__list");
+    this.itemsNav = document.querySelectorAll(".nav__item");
   },
 };
+
+const BOX_FAIL_MODIFIER = "box--fail";
+const ACTIVE_LINK_MODIFIER = "link--active";
+const NAV_LINK_CLASS = "nav__link";
+const NAV_ITEM_CLASS = "nav__item";
+const NAV_ICON_CLASS = "nav__icon";
 
 DOM.getElements();
 
@@ -14,23 +22,50 @@ DOM.addTodoButtonBox.addEventListener("click", function () {
   todoCreationHandler(DOM.sectionBox, DOM.inputBox);
 });
 
+DOM.listNav.addEventListener("click", function (e) {
+  e.preventDefault();
+  const clickedElement = e.target;
+  if (isNavItemParent(clickedElement))
+    activeLinkAnimationHandler(clickedElement);
+});
+
 function todoCreationHandler(elementBox, inputForm) {
-  if (isInputEmpty(inputForm)) {
-    inputFailAnimationHandler(elementBox);
-  } else {
+  if (isInputEmpty(inputForm)) inputFailAnimationHandler(elementBox);
+  else {
     // add todo to the list
   }
 }
 
 async function inputFailAnimationHandler(elementBox) {
-  addClass(elementBox, "box--fail");
+  addClass(elementBox, BOX_FAIL_MODIFIER);
   await sleep(700);
-  removeClass(elementBox, "box--fail");
+  removeClass(elementBox, BOX_FAIL_MODIFIER);
+}
+
+function activeLinkAnimationHandler(element) {
+  DOM.itemsNav.forEach((item) => {
+    removeClass(item, ACTIVE_LINK_MODIFIER);
+  });
+  addClass(getElementParent(element), ACTIVE_LINK_MODIFIER);
 }
 
 function isInputEmpty(inputForm) {
   if (inputForm.value) return false;
   return true;
+}
+
+function isNavItemParent(element) {
+  if (
+    checkClass(element, NAV_ICON_CLASS) ||
+    checkClass(element, NAV_LINK_CLASS)
+  )
+    return true;
+
+  return false;
+}
+
+function getElementParent(element) {
+  return element.parentElement;
 }
 
 function addClass(element, className) {
@@ -41,8 +76,12 @@ function removeClass(element, className) {
   element.classList.remove(className);
 }
 
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
+function checkClass(element, className) {
+  return element.classList.contains(className);
+}
+
+function sleep(milliseconds) {
+  return new Promise((resolve) => setTimeout(resolve, milliseconds));
 }
 
 // const todoList = [];

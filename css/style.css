@@ -9,6 +9,7 @@
   --primary-decoration-color: #e6e2ff;
   --secondary-background: #9381ff;
   --secondary-decoration-color: #ffeedd;
+  /* --link-decoration-color: */
   --text-color: #190b30;
 }
 
@@ -116,11 +117,12 @@ html {
   font-weight: 600;
 }
 .nav__item:hover {
+  cursor: pointer;
   transform: scale(1.02);
 }
 
 .nav__link {
-  color: inherit;
+  color: var(--text-color);
   text-decoration: none;
 }
 
@@ -129,7 +131,7 @@ html {
 }
 
 .link--active {
-  color: var(--secondary-decoration-color);
+  font-size: 1.2rem;
 }
 
 .tabs {
