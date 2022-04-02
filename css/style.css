@@ -55,6 +55,7 @@ html {
   margin-bottom: 1.2em;
   border-radius: 5px;
   background: var(--primary-background);
+  overflow: hidden;
 }
 
 .box__input {
@@ -72,6 +73,10 @@ html {
   cursor: pointer;
 }
 
+.box__icon:hover {
+  transform: scale(1.1);
+}
+
 .nav {
   margin-bottom: 1.2em;
 }
@@ -86,6 +91,9 @@ html {
   padding-bottom: 0.3em;
   color: var(--text-color);
   font-weight: 600;
+}
+.nav__item:hover {
+  transform: scale(1.02);
 }
 
 .nav__link {
