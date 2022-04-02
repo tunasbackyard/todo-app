@@ -38,15 +38,15 @@
 
       <section class="nav">
         <ul class="nav__list">
-          <li class="nav__item link--active">
+          <li class="nav__item link--active" data-linked-container-id="all">
             <a class="nav__link" href="#"> All </a>
             <i class="nav__icon fa-solid fa-list"></i>
           </li>
-          <li class="nav__item">
+          <li class="nav__item" data-linked-container-id="completed">
             <a class="nav__link" href="#"> Completed </a>
             <i class="nav__icon fa-solid fa-check"></i>
           </li>
-          <li class="nav__item">
+          <li class="nav__item" data-linked-container-id="deleted">
             <a class="nav__link" href="#"> Deleted </a>
             <i class="nav__icon fa-solid fa-trash-can"></i>
           </li>
@@ -54,7 +54,7 @@
       </section>
 
       <section class="tabs">
-        <div class="container container--active">
+        <div id="all" class="container container--active">
           <div class="container__alert-box">
             <h3 class="container__alert">nothing to do</h3>
           </div>
@@ -67,7 +67,7 @@
           </ul>
         </div>
 
-        <div class="container">
+        <div id="completed" class="container">
           <div class="container__alert-box">
             <h3 class="container__alert"></h3>
           </div>
@@ -80,7 +80,7 @@
           </ul>
         </div>
 
-        <div class="container">
+        <div id="deleted" class="container">
           <div class="container__alert-box">
             <h3 class="container__alert"></h3>
           </div>

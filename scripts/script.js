@@ -7,11 +7,13 @@ const DOM = {
     this.addTodoButtonBox = document.querySelector(".box__icon");
     this.listNav = document.querySelector(".nav__list");
     this.itemsNav = document.querySelectorAll(".nav__item");
+    this.containerTabs = document.querySelectorAll(".container");
   },
 };
 
 const BOX_FAIL_MODIFIER = "box--fail";
 const ACTIVE_LINK_MODIFIER = "link--active";
+const ACTIVE_CONTAINER_MODIFIER = "container--active";
 const NAV_LINK_CLASS = "nav__link";
 const NAV_ITEM_CLASS = "nav__item";
 const NAV_ICON_CLASS = "nav__icon";
@@ -25,8 +27,10 @@ DOM.addTodoButtonBox.addEventListener("click", function () {
 DOM.listNav.addEventListener("click", function (e) {
   e.preventDefault();
   const clickedElement = e.target;
-  if (isNavItemParent(clickedElement))
+  if (isNavItemParent(clickedElement)) {
     activeLinkAnimationHandler(clickedElement);
+    activeContainerHandler(getElementParent(clickedElement));
+  }
 });
 
 function todoCreationHandler(elementBox, inputForm) {
@@ -49,6 +53,15 @@ function activeLinkAnimationHandler(element) {
   addClass(getElementParent(element), ACTIVE_LINK_MODIFIER);
 }
 
+function activeContainerHandler(navItem) {
+  const activeContainer = getLinkedContainerByID(getLinkedContainerID(navItem));
+
+  DOM.containerTabs.forEach((container) => {
+    removeClass(container, ACTIVE_CONTAINER_MODIFIER);
+  });
+  addClass(activeContainer, ACTIVE_CONTAINER_MODIFIER);
+}
+
 function isInputEmpty(inputForm) {
   if (inputForm.value) return false;
   return true;
@@ -66,6 +79,14 @@ function isNavItemParent(element) {
 
 function getElementParent(element) {
   return element.parentElement;
+}
+
+function getLinkedContainerID(element) {
+  return element.dataset.linkedContainerId;
+}
+
+function getLinkedContainerByID(id) {
+  return document.getElementById(id);
 }
 
 function addClass(element, className) {
