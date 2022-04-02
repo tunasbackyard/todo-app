@@ -13,6 +13,7 @@ const DOM = {
 };
 
 const todoList = [];
+const completedList = [];
 let taskIndex = 0;
 
 DOM.getElements();
@@ -26,6 +27,13 @@ DOM.inputIcon.addEventListener("click", function () {
     removeClass(DOM.taskList, "hidden");
     addClass(DOM.noItemAlert, "hidden");
     clearInputArea();
+    DOM.checkBox = document.querySelector("#checkbox");
+    DOM.checkBox.addEventListener("click", function (e) {
+      const checkedElement = e.target.parentElement;
+      addToList(completedList, checkedElement);
+      removeElement(DOM.taskList, checkedElement);
+      removeClass(DOM.noItemAlert, "hidden");
+    });
   } else {
     handleInputFail(DOM.inputForm);
   }
@@ -93,6 +101,7 @@ function createTaskItem(parent) {
   item.setAttribute("data-index", taskIndex++);
   const input = document.createElement("input");
   input.setAttribute("type", "checkbox");
+  input.setAttribute("id", "checkbox");
   const task = document.createElement("span");
   const menu = document.createElement("i");
   addClass(menu, "fa-solid");
@@ -101,6 +110,10 @@ function createTaskItem(parent) {
   item.appendChild(task);
   item.appendChild(menu);
   return parent.appendChild(item);
+}
+
+function removeElement(parent, element) {
+  parent.removeChild(element);
 }
 
 function sleep(ms) {
