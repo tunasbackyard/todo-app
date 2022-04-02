@@ -196,3 +196,7 @@ html {
 .list--active {
   visibility: visible;
 }
+
+.alert--hidden {
+  display: none;
+}

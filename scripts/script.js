@@ -8,12 +8,21 @@ const DOM = {
     this.listNav = document.querySelector(".nav__list");
     this.itemsNav = document.querySelectorAll(".nav__item");
     this.containerTabs = document.querySelectorAll(".container");
+    this.alertDialogs = document.querySelectorAll(".container__alert-box");
   },
+};
+
+const ARRAYS = {
+  all: [],
+  completed: [],
+  deleted: [],
 };
 
 const BOX_FAIL_MODIFIER = "box--fail";
 const ACTIVE_LINK_MODIFIER = "link--active";
+const ACTIVE_LIST_MODIFIER = "list--active";
 const ACTIVE_CONTAINER_MODIFIER = "container--active";
+const HIDDEN_ALERT_MODIFIER = "alert--hidden";
 const NAV_LINK_CLASS = "nav__link";
 const NAV_ITEM_CLASS = "nav__item";
 const NAV_ICON_CLASS = "nav__icon";
@@ -30,6 +39,10 @@ DOM.listNav.addEventListener("click", function (e) {
   if (isNavItemParent(clickedElement)) {
     activeLinkAnimationHandler(clickedElement);
     activeContainerHandler(getElementParent(clickedElement));
+    alertDialogHandler({
+      activeContainerID: getActiveContainer().id,
+      isArrayEmpty: isEmptyArray(ARRAYS[getActiveContainer().id]),
+    });
   }
 });
 
@@ -62,6 +75,26 @@ function activeContainerHandler(navItem) {
   addClass(activeContainer, ACTIVE_CONTAINER_MODIFIER);
 }
 
+function alertDialogHandler(arg) {
+  if (arg.isArrayEmpty) {
+    DOM.alertDialogs.forEach((alert) => {
+      if (arg.activeContainerID == getLinkedContainerID(alert)) {
+        removeClass(alert, HIDDEN_ALERT_MODIFIER);
+      }
+    });
+  } else {
+    DOM.alertDialogs.forEach((alert) => {
+      if (arg.activeContainerID == getLinkedContainerID(alert)) {
+        addClass(alert, HIDDEN_ALERT_MODIFIER);
+      }
+    });
+  }
+}
+
+function isEmptyArray(array) {
+  return !array.length;
+}
+
 function isInputEmpty(inputForm) {
   if (inputForm.value) return false;
   return true;
@@ -75,6 +108,16 @@ function isNavItemParent(element) {
     return true;
 
   return false;
+}
+
+function getActiveContainer() {
+  let activeContainer;
+  DOM.containerTabs.forEach((container) => {
+    if (checkClass(container, ACTIVE_CONTAINER_MODIFIER)) {
+      activeContainer = container;
+    }
+  });
+  return activeContainer;
 }
 
 function getElementParent(element) {
