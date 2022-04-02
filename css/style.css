@@ -6,9 +6,10 @@
 
 :root {
   --primary-background: #f8f7ff;
-  --primary-effect-color: #e6e2ff;
+  --primary-decoration-color: #e6e2ff;
   --secondary-background: #9381ff;
-  --text-color: rgb(25, 11, 48);
+  --secondary-decoration-color: #ffeedd;
+  --text-color: #190b30;
 }
 
 html {
@@ -67,5 +68,35 @@ html {
 
 .box__icon {
   padding: 0.6em;
-  background: var(--primary-effect-color);
+  background: var(--primary-decoration-color);
+  cursor: pointer;
+}
+
+.nav {
+  margin-bottom: 1.2em;
+}
+
+.nav__list {
+  display: flex;
+  list-style: none;
+}
+
+.nav__item {
+  margin: 0 1.3em;
+  padding-bottom: 0.3em;
+  color: var(--text-color);
+  font-weight: 600;
+}
+
+.nav__link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.nav__icon {
+  margin-left: 0.2em;
+}
+
+.link--active {
+  color: var(--secondary-decoration-color);
 }
