@@ -46,3 +46,26 @@ html {
 .header__subtitle {
   margin-bottom: 0.1em;
 }
+
+.box {
+  display: flex;
+  flex-wrap: nowrap;
+  width: 20em;
+  margin-bottom: 1.2em;
+  border-radius: 5px;
+  background: var(--primary-background);
+}
+
+.box__input {
+  width: 100%;
+  margin: 0 0.8em;
+  font-size: 0.9rem;
+  line-height: 30px;
+  border: none;
+  outline: none;
+}
+
+.box__icon {
+  padding: 0.6em;
+  background: var(--primary-effect-color);
+}
