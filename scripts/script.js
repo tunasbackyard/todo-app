@@ -8,7 +8,8 @@ const DOM = {
     this.listNav = document.querySelector(".nav__list");
     this.itemsNav = document.querySelectorAll(".nav__item");
     this.containerTabs = document.querySelectorAll(".container");
-    this.alertDialogs = document.querySelectorAll(".container__alert-box");
+    this.alertDialogsTabs = document.querySelectorAll(".container__alert-box");
+    this.containerListsTabs = document.querySelectorAll(".container__list");
   },
 };
 
@@ -39,7 +40,11 @@ DOM.listNav.addEventListener("click", function (e) {
   if (isNavItemParent(clickedElement)) {
     activeLinkAnimationHandler(clickedElement);
     activeContainerHandler(getElementParent(clickedElement));
-    alertDialogHandler({
+    alertDialogDisplayHandler({
+      activeContainerID: getActiveContainer().id,
+      isArrayEmpty: isEmptyArray(ARRAYS[getActiveContainer().id]),
+    });
+    containerListDisplayHandler({
       activeContainerID: getActiveContainer().id,
       isArrayEmpty: isEmptyArray(ARRAYS[getActiveContainer().id]),
     });
@@ -49,7 +54,17 @@ DOM.listNav.addEventListener("click", function (e) {
 function todoCreationHandler(elementBox, inputForm) {
   if (isInputEmpty(inputForm)) inputFailAnimationHandler(elementBox);
   else {
-    // add todo to the list
+    ARRAYS.all.push(
+      createTaskElement(getActiveContainerList("all"), inputForm.value)
+    );
+    alertDialogDisplayHandler({
+      activeContainerID: getActiveContainer().id,
+      isArrayEmpty: isEmptyArray(ARRAYS[getActiveContainer().id]),
+    });
+    containerListDisplayHandler({
+      activeContainerID: getActiveContainer().id,
+      isArrayEmpty: isEmptyArray(ARRAYS[getActiveContainer().id]),
+    });
   }
 }
 
@@ -75,20 +90,33 @@ function activeContainerHandler(navItem) {
   addClass(activeContainer, ACTIVE_CONTAINER_MODIFIER);
 }
 
-function alertDialogHandler(arg) {
+function alertDialogDisplayHandler(arg) {
   if (arg.isArrayEmpty) {
-    DOM.alertDialogs.forEach((alert) => {
+    DOM.alertDialogsTabs.forEach((alert) => {
       if (arg.activeContainerID == getLinkedContainerID(alert)) {
         removeClass(alert, HIDDEN_ALERT_MODIFIER);
       }
     });
   } else {
-    DOM.alertDialogs.forEach((alert) => {
+    DOM.alertDialogsTabs.forEach((alert) => {
       if (arg.activeContainerID == getLinkedContainerID(alert)) {
         addClass(alert, HIDDEN_ALERT_MODIFIER);
       }
     });
   }
+}
+
+function containerListDisplayHandler(args) {
+  if (!args.isArrayEmpty)
+    addClass(
+      getActiveContainerList(args.activeContainerID),
+      ACTIVE_LIST_MODIFIER
+    );
+  else
+    removeClass(
+      getActiveContainerList(args.activeContainerID),
+      ACTIVE_LIST_MODIFIER
+    );
 }
 
 function isEmptyArray(array) {
@@ -120,6 +148,14 @@ function getActiveContainer() {
   return activeContainer;
 }
 
+function getActiveContainerList(id) {
+  let activeList;
+  DOM.containerListsTabs.forEach((list) => {
+    if (getLinkedContainerID(list) == id) activeList = list;
+  });
+  return activeList;
+}
+
 function getElementParent(element) {
   return element.parentElement;
 }
@@ -148,120 +184,20 @@ function sleep(milliseconds) {
   return new Promise((resolve) => setTimeout(resolve, milliseconds));
 }
 
-// const todoList = [];
-// const completedList = [];
-// let taskIndex = 0;
-
-// DOM.inputIcon.addEventListener("click", function () {
-//   const taskInput = getUserInput(DOM.inputForm);
-//   if (checkUserInput(taskInput)) {
-//     addToList(todoList, getUserInput(DOM.inputForm));
-//     const taskItem = createTaskItem(DOM.taskList);
-//     setItemText(taskItem, todoList[taskItem.dataset.index]);
-//     removeClass(DOM.taskList, "hidden");
-//     addClass(DOM.noItemAlert, "hidden");
-//     clearInputArea();
-//     DOM.checkBox = document.querySelector("#checkbox");
-//     DOM.checkBox.addEventListener("click", function (e) {
-//       const checkedElement = e.target.parentElement;
-//       addToList(completedList, checkedElement);
-//       removeElement(DOM.taskList, taskItem);
-//       removeClass(DOM.noItemAlert, "hidden");
-//     });
-//   } else {
-//     handleInputFail(DOM.inputForm);
-//   }
-// });
-
-// DOM.linkList.addEventListener("click", function (e) {
-//   e.preventDefault();
-//   if (!checkClass(e.target, "link")) return;
-//   DOM.links.forEach((link) => {
-//     removeClass(link, "link--active");
-//   });
-//   addClass(e.target, "link--active");
-//   const id = e.target.dataset.id;
-//   DOM.containers.forEach((container) => {
-//     addClass(container, "hidden");
-//     if (container.dataset.selector === id) {
-//       removeClass(container, "hidden");
-//     }
-//   });
-// });
-
-// function addClass(element, className) {
-//   if (checkClass(element, className)) return;
-//   element.classList.add(className);
-// }
-
-// function removeClass(element, className) {
-//   if (!checkClass(element, className)) return;
-//   element.classList.remove(className);
-// }
-
-// function checkClass(element, className) {
-//   return element.classList.contains(className);
-// }
-
-// function checkUserInput(input) {
-//   if (input) return true;
-//   return false;
-// }
-
-// function getUserInput(form) {
-//   return form.value;
-// }
-
-// function setItemText(element, string) {
-//   [...element.children].forEach((child) => {
-//     if (child.tagName === "SPAN") {
-//       child.textContent = string;
-//     }
-//   });
-// }
-
-// function clearInputArea() {
-//   DOM.inputForm.value = "";
-// }
-
-// function addToList(list, element) {
-//   list.push(element);
-// }
-
-// function removeFromList(list, element, index) {}
-
-// function createTaskItem(parent) {
-//   const item = document.createElement("li");
-//   item.setAttribute("data-index", taskIndex++);
-//   const input = document.createElement("input");
-//   input.setAttribute("type", "checkbox");
-//   input.setAttribute("id", "checkbox");
-//   const task = document.createElement("span");
-//   const menu = document.createElement("i");
-//   addClass(menu, "fa-solid");
-//   addClass(menu, "fa-ellipsis-vertical");
-//   item.appendChild(input);
-//   item.appendChild(task);
-//   item.appendChild(menu);
-//   return parent.appendChild(item);
-// }
-
-// function removeElement(parent, element) {
-//   parent.removeChild(element);
-// }
-
-// function sleep(ms) {
-//   return new Promise((resolve) => setTimeout(resolve, ms));
-// }
-
-// function handleInputFail(element) {
-//   element.setAttribute("placeholder", "task cannot be empty");
-//   addClass(element.parentElement, "failed");
-//   removeFailedState();
-// }
-
-// async function removeFailedState() {
-//   await sleep(700);
-//   removeClass(DOM.inputForm.parentElement, "failed");
-//   DOM.inputForm.setAttribute("placeholder", "max 20 character");
-// }
+let taskIndex = 0;
+function createTaskElement(parent, taskText) {
+  const item = document.createElement("li");
+  item.setAttribute("class", "item");
+  const input = document.createElement("input");
+  input.setAttribute("class", "item__checkbox");
+  const span = document.createElement("span");
+  span.setAttribute("class", "item__task");
+  span.textContent = taskText;
+  const i = document.createElement("i");
+  addClass(i, "fa-solid");
+  addClass(i, "fa-ellipsis-vertical");
+  item.appendChild(input);
+  item.appendChild(span);
+  item.appendChild(i);
+  return parent.appendChild(item);
+}
